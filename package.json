@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "server:build": "babel server/src -d server/lib/",
+    "server:build:watch": "babel server/src -d server/lib/ -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "akameco",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.23"
+    "babel": "^5.8.23",
+    "gulp": "^3.9.0"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
