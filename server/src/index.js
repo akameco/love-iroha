@@ -1,5 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import {tokenizer, filterToken} from './lib'
+
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))
@@ -18,8 +20,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
-  res.send(req.body)
+  let text = req.body.text
+  tokenizer(text).then(arr => {
+    let list = filterToken(arr)
+    res.send(list)
+  })
 })
 
 router.get('/speech', (req, res) => {
