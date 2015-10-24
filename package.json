@@ -12,12 +12,13 @@
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.23",
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "nodemon": "^1.7.3"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "jade": "^1.11.0",
     "kuromoji": "0.0.4",
     "lodash": "^3.10.1",
     "moji": "^0.5.1",
