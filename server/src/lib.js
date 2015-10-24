@@ -25,13 +25,13 @@ function rank(word) {
   return r.length > 0 ? r[0].rank : 0
 }
 
-export async function rankWords(){
+export async function rankwords(word){
   let arr = await tokenizer(word)
   return filterToken(arr)
-  .map(w => {
-    let x = moji(w).convert('KK', 'HG').toString()
-    return rank(x)
-  })
-  .reduce((sum, x) => sum + x,0)
+    .map(w => {
+      let x = moji(w).convert('KK', 'HG').toString()
+      return rank(x)
+    })
+    .reduce((sum, x) => sum + x,0)
 }
 
