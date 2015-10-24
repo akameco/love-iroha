@@ -1,41 +1,39 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import path from 'path'
-import {tokenizer, filterToken} from './lib'
+import http from 'http'
+import socketio from 'socket.io'
+import {rankwords} from './lib'
 
-const app = express()
+let app = express();
+let server = http.Server(app);
+let io = socketio(server);
 
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
-app.set('view engine', 'jade');
-app.set('views', path.resolve( __dirname, '../views'));
+app.set('view engine', 'ejs');
+app.set('views', path.resolve(__dirname, '../views'))
 
-const port = process.env.PORT || 8080
-const router = express.Router()
+app.use(express.static(path.resolve(__dirname, '../public')))
 
-router.use((req, res, next) => {
-  next()
+app.get('/', (req, res) => {
+  res.render('index')
 })
 
-router.get('/', (req, res) => {
-  console.log(res.body)
-  res.render('index', {title: 'hey'})
-})
+io.on('connection', (socket) => {
+  console.log('a user connected');
 
-router.get('/speech', (req, res) => {
-  console.log('speech');
-  res.render('speech')
-})
+  socket.on('text', (msg) => {
+    rankwords(msg).then(point => {
+      console.log(point);
+      io.emit('point', point)
+    })
+  });
 
-router.post('/', (req, res) => {
-  let text = req.body.text
-  tokenizer(text).then(arr => {
-    let list = filterToken(arr)
-    res.send(list)
-  })
-})
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 
+let port = process.env.PORT || 8080
+server.listen(port, () => {
+  console.log('listening on *:', port)
+});
 
-app.use(router)
-app.listen(port)
-console.log('listen port', port)

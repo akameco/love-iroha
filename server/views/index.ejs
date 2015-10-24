@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DEMO</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" charset="utf-8"></link>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('text', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('point', function(msg){
+        console.log(msg);
+        $('#messages').append($('<li>').text(msg));
+      });
+    </script>
+  </body>
+</html>
