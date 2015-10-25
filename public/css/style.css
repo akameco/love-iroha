@@ -8,3 +8,29 @@ body {
   font: 13px Helvetica, Arial;
 }
 
+#top-img {
+  margin: 0 auto;
+  display: block;
+  width: 300px;
+  height: 300px;
+}
+
+.btn-area {
+  margin: 2em auto;
+  padding: .5em auto;
+  display: block;
+  text-align: center;
+}
+
+#play-btn {
+  margin: 0 auto;
+  padding: .5em 2em;
+  text-align: center;
+  background: #22ffee;
+}
+
+#play-btn:hover {
+  color: red;
+  background: #ffee22;
+}
+
