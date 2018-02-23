@@ -11,7 +11,7 @@
   "author": "akameco",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "^6.23.0",
     "gulp": "^3.9.0",
     "nodemon": "^1.7.3"
   },
@@ -19,10 +19,10 @@
     "body-parser": "^1.14.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "kuromoji": "0.0.4",
-    "lodash": "^3.10.1",
+    "kuromoji": "0.1.1",
+    "lodash": "^4.17.5",
     "moji": "^0.5.1",
-    "socket.io": "^1.3.7"
+    "socket.io": "^2.0.4"
   },
   "babel": {
     "stage": 0
